@@ -1,0 +1,240 @@
+'use client'
+
+import { Card, CardContent } from "@/components/ui/card";
+import { ChevronDown, Star } from "lucide-react";
+import { useState, useEffect } from "react";
+import { 
+  BarChart as ShadcnBarChart,
+  Bar,
+  XAxis,
+  YAxis,
+  CartesianGrid,
+  Tooltip,
+  ResponsiveContainer,
+  Legend
+} from "recharts";
+
+type MonthData = {
+  month: string;
+  usa: number;
+  china: number;
+  germany: number;
+};
+
+const monthlyData: MonthData[] = [
+  { month: "Jan", usa: 80, china: 60, germany: 45 },
+  { month: "Feb", usa: 65, china: 40, germany: 30 },
+  { month: "Mar", usa: 90, china: 70, germany: 35 },
+  { month: "Apr", usa: 75, china: 85, germany: 55 },
+  { month: "May", usa: 85, china: 50, germany: 40 },
+  { month: "Jun", usa: 70, china: 65, germany: 45 },
+  { month: "Jul", usa: 95, china: 75, germany: 60 },
+  { month: "Aug", usa: 88, china: 80, germany: 50 },
+  { month: "Sep", usa: 82, china: 45, germany: 35 },
+  { month: "Oct", usa: 78, china: 55, germany: 40 },
+  { month: "Nov", usa: 72, china: 70, germany: 45 },
+  { month: "Dec", usa: 85, china: 65, germany: 50 }
+];
+
+function CircularProgress({ percentage, label, color }: { percentage: number; label: string; color: string }) {
+  const [animatedPercentage, setAnimatedPercentage] = useState(0);
+  const [animatedValue, setAnimatedValue] = useState(0);
+  const radius = 45;
+  const circumference = 2 * Math.PI * radius;
+  const strokeDashoffset = circumference - (animatedPercentage / 100) * circumference;
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setAnimatedPercentage(percentage);
+    }, 500);
+
+    // Animate the percentage number
+    const duration = 1500;
+    const steps = 60;
+    const stepValue = percentage / steps;
+    let currentStep = 0;
+    const numberTimer = setInterval(() => {
+      currentStep++;
+      setAnimatedValue(Math.min(Math.round(currentStep * stepValue), percentage));
+      
+      if (currentStep >= steps) {
+        clearInterval(numberTimer);
+      }
+    }, duration / steps);
+
+    return () => {
+      clearTimeout(timer);
+      clearInterval(numberTimer);
+    };
+  }, [percentage]);
+
+  return (
+    <div className="flex flex-col items-center">
+      <div className="relative w-24 h-24">
+        <svg className="w-24 h-24 transform -rotate-90" viewBox="0 0 100 100">
+          <circle
+            cx="50"
+            cy="50"
+            r={radius}
+            stroke="currentColor"
+            strokeWidth="6"
+            fill="none"
+            className="text-gray-700"
+          />
+          <circle
+            cx="50"
+            cy="50"
+            r={radius}
+            stroke="currentColor"
+            strokeWidth="6"
+            fill="none"
+            strokeDasharray={circumference}
+            strokeDashoffset={strokeDashoffset}
+            className={color}
+            strokeLinecap="round"
+            style={{
+              transition: 'stroke-dashoffset 1.5s cubic-bezier(0.4, 0, 0.2, 1)'
+            }}
+          />
+        </svg>
+      </div>
+      <div className="text-center mt-2">
+        <div className="text-2xl font-bold text-white">{animatedValue}%</div>
+        <div className="text-sm text-gray-400">{label}</div>
+      </div>
+    </div>
+  );
+}
+
+function VerticalBarChart() {
+  const [chartData, setChartData] = useState<MonthData[]>([]);
+  
+  useEffect(() => {
+    // Animate the data loading
+    const timer = setTimeout(() => {
+      setChartData(monthlyData);
+    }, 300);
+    
+    return () => clearTimeout(timer);
+  }, []);
+
+  const CustomTooltip = ({ active, payload, label }: any) => {
+    if (active && payload && payload.length) {
+      return (
+        <div className="bg-[#2a2a2a] p-3 rounded-md border border-gray-700 shadow-lg">
+          <p className="text-white font-medium">{`${label}`}</p>
+          {payload.map((entry: any, index: number) => (
+            <p key={`item-${index}`} style={{ color: entry.color }}>
+              {`${entry.name}: ${entry.value}`}
+            </p>
+          ))}
+        </div>
+      );
+    }
+    return null;
+  };
+
+  return (
+    <div className="bg-[#1a1a1a] rounded-lg p-6 flex-1 border border-gray-800">
+      <div className="flex items-center justify-between mb-6">
+        <h2 className="text-xl font-semibold text-white">Historical Days to Trade</h2>
+        <div className="flex items-center gap-2">
+          <span className="text-sm text-gray-400">Show:</span>
+          <div className="flex items-center gap-1 bg-[#2a2a2a] rounded-lg px-3 py-1 cursor-pointer hover:bg-[#333333] transition-colors">
+            <span className="text-sm text-white">In This Year</span>
+            <ChevronDown size={16} className="text-gray-400" />
+          </div>
+        </div>
+      </div>
+      
+      <div className="h-[350px] w-full">
+        <ResponsiveContainer width="100%" height="100%">
+          <ShadcnBarChart
+            data={chartData}
+            margin={{ top: 20, right: 30, left: 20, bottom: 20 }}
+            barGap={2}
+          >
+            <CartesianGrid strokeDasharray="3 3" stroke="#333" vertical={false} />
+            <XAxis 
+              dataKey="month" 
+              axisLine={{ stroke: '#444' }}
+              tickLine={false}
+              tick={{ fill: '#999', fontSize: 12 }}
+            />
+            <YAxis 
+              axisLine={{ stroke: '#444' }}
+              tickLine={false}
+              tick={{ fill: '#999', fontSize: 12 }}
+            />
+            <Tooltip 
+              content={<CustomTooltip />} 
+              cursor={{ fill: 'rgba(50, 50, 50, 0.2)' }} // Subtle highlight without hover effect
+            />
+            <Legend 
+              wrapperStyle={{ paddingTop: 15 }}
+              iconType="circle"
+              formatter={(value) => <span className="text-gray-300">{value}</span>}
+            />
+            <Bar 
+              dataKey="usa" 
+              name="USA" 
+              fill="#10b981" 
+              radius={[4, 4, 0, 0]} 
+              animationDuration={1500}
+              animationEasing="ease-out"
+            />
+            <Bar 
+              dataKey="china" 
+              name="China" 
+              fill="#a855f7" 
+              radius={[4, 4, 0, 0]} 
+              animationDuration={1500}
+              animationEasing="ease-out"
+              animationBegin={300}
+            />
+            <Bar 
+              dataKey="germany" 
+              name="Germany" 
+              fill="#3b82f6" 
+              radius={[4, 4, 0, 0]} 
+              animationDuration={1500}
+              animationEasing="ease-out"
+              animationBegin={600}
+            />
+          </ShadcnBarChart>
+        </ResponsiveContainer>
+      </div>
+    </div>
+  );
+}
+
+export default function HistoricalDaysChart() {
+  return (
+    <div className="bg-[#0f0f0f] min-h-screen p-6">
+      <div className="max-w-7xl mx-auto">
+        <div className="flex flex-col lg:flex-row gap-6">
+          <VerticalBarChart />
+          
+          <div className="flex flex-row lg:flex-col gap-4">
+            <Card className="bg-[#1a1a1a] border-gray-800 p-6 flex-1">
+              <CardContent className="p-0">
+                <CircularProgress percentage={75} label="Target" color="text-green-400" />
+              </CardContent>
+            </Card>
+            
+            <Card className="bg-[#1a1a1a] border-gray-800 p-6 flex-1">
+              <CardContent className="p-0 relative">
+                <CircularProgress percentage={50} label="Achieved" color="text-purple-400" />
+                <div className="absolute top-2 right-2">
+                  <div className="w-10 h-10 bg-blue-600 rounded-full flex items-center justify-center">
+                    <Star size={16} className="text-white" fill="currentColor" />
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
