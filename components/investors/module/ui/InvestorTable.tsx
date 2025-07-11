@@ -16,8 +16,8 @@ type Stock = {
 
 const stocks: Stock[] = [
   {
-    name: "Amazon",
-    ticker: "AMZN",
+    name: "Microsoft",
+    ticker: "MSFT",
     pressure: 650,
     daysToTrade: 20,
     rating: 5,
@@ -26,8 +26,8 @@ const stocks: Stock[] = [
     isPositive: true,
   },
   {
-    name: "Meta",
-    ticker: "META",
+    name: "Apple",
+    ticker: "AAPL",
     pressure: 250,
     daysToTrade: 16,
     rating: 2,
@@ -36,8 +36,8 @@ const stocks: Stock[] = [
     isPositive: false,
   },
   {
-    name: "NVIDIA Corp",
-    ticker: "NVDA",
+    name: "Tesla",
+    ticker: "TSLA",
     pressure: 128,
     daysToTrade: 21,
     rating: 4,
@@ -81,15 +81,15 @@ function MiniSparkline({ isPositive }: { isPositive: boolean }) {
   );
 }
 
-export default function YourStocks() {
+export default function InvestorTable() {
   return (
-    <div className="bg-[#232323]  rounded-2xl  p-6">
+    <div className="bg-[#232323] my-5 rounded-2xl w-full   p-6">
       <Card className="bg-[#171717] border-gray-800 shadow-2xl  mx-auto">
         <CardContent className="p-0">
           <div className="p-6">
             <div className="flex items-center justify-between mb-6">
               <h2 className="text-xl font-semibold text-white">
-                Your Stocks with Lowst Pressure
+               This Investor Might Like
               </h2>
               <button className="text-gray-400 hover:text-gray-300">
                 <MoreHorizontal size={20} />

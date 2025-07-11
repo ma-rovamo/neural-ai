@@ -85,7 +85,7 @@ export default function SimilarStocks() {
 
   return (
     <div className=" bg-[#232323] rounded-2xl  p-6">
-      <div className="max-w-7xl mx-auto space-y-6">
+      <div className=" mx-auto space-y-6">
         {/* Header */}
         <div className="flex items-center justify-between">
           <h1 className="text-xl font-medium text-gray-300">Similar Stocks</h1>

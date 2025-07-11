@@ -135,7 +135,7 @@ function VerticalBarChart() {
   };
 
   return (
-    <div className="bg-[#1a1a1a] rounded-lg p-6 flex-1 border border-gray-800">
+    <div className="bg-[#171717] rounded-lg p-6 flex-1 border border-gray-800">
       <div className="flex items-center justify-between mb-6">
         <h2 className="text-xl font-semibold text-white">Historical Days to Trade</h2>
         <div className="flex items-center gap-2">
@@ -210,26 +210,22 @@ function VerticalBarChart() {
 
 export default function HistoricalDaysChart() {
   return (
-    <div className="bg-[#0f0f0f] min-h-screen p-6">
-      <div className="max-w-7xl mx-auto">
+    <div className="bg-[#232323] rounded-2xl my-5  p-6">
+      <div className=" mx-auto">
         <div className="flex flex-col lg:flex-row gap-6">
           <VerticalBarChart />
           
           <div className="flex flex-row lg:flex-col gap-4">
-            <Card className="bg-[#1a1a1a] border-gray-800 p-6 flex-1">
+            <Card className="bg-[#171717] border-gray-800 p-6 flex-1">
               <CardContent className="p-0">
                 <CircularProgress percentage={75} label="Target" color="text-green-400" />
               </CardContent>
             </Card>
             
-            <Card className="bg-[#1a1a1a] border-gray-800 p-6 flex-1">
+            <Card className="bg-[#171717] border-gray-800 p-6 flex-1">
               <CardContent className="p-0 relative">
                 <CircularProgress percentage={50} label="Achieved" color="text-purple-400" />
-                <div className="absolute top-2 right-2">
-                  <div className="w-10 h-10 bg-blue-600 rounded-full flex items-center justify-center">
-                    <Star size={16} className="text-white" fill="currentColor" />
-                  </div>
-                </div>
+               
               </CardContent>
             </Card>
           </div>

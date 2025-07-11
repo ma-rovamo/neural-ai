@@ -84,7 +84,7 @@ function MiniSparkline({ isPositive }: { isPositive: boolean }) {
 export default function PortfolioStocks() {
   return (
     <div className="bg-[#232323] my-5 rounded-2xl  p-6">
-      <Card className="bg-[#171717] border-gray-800 shadow-2xl max-w-5xl mx-auto">
+      <Card className="bg-[#171717] border-gray-800 shadow-2xl  mx-auto">
         <CardContent className="p-0">
           <div className="p-6">
             <div className="flex items-center justify-between mb-6">

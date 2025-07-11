@@ -12,13 +12,12 @@ const Home = () => {
 		<>
 			<section className="pb-10 my-3  ">
 				<EuropeanSmallCupsSection />
-
 				<DashboardChart />
 				<DashboardBreakdown />
 				<CustomerAnalytics />
 				<StockPressureTable />
-				<YourStocks/>
-				<PortfolioStocks/>
+				<YourStocks />
+				<PortfolioStocks />
 			</section>
 		</>
 	);

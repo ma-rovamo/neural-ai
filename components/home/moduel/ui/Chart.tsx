@@ -55,8 +55,7 @@ export function DashboardChart() {
 			<div className="mb-6 flex items-center justify-between">
 				<div className="flex items-center">
 					<h2 className="text-2xl font-bold text-white">Your Dashboard</h2>
-					<div className="ml-4 px-3 py-1 bg-[#6366f1]/10 rounded-full">
-					</div>
+					<div className="ml-4 px-3 py-1 bg-[#6366f1]/10 rounded-full"></div>
 				</div>
 
 				<div className="flex items-center gap-3">
@@ -135,19 +134,11 @@ export function DashboardChart() {
 							</LineChart>
 						</ResponsiveContainer>
 					</div>
-
-					{/* Floating action button */}
-					<div className="absolute bottom-6 right-6">
-						<button className="bg-gradient-to-r from-[#4f46e5] to-[#3b82f6] hover:from-[#4338ca] hover:to-[#2563eb] text-white p-3 rounded-full shadow-lg transition-all duration-300 hover:shadow-blue-500/20 hover:scale-105">
-							<Sparkles className="h-5 w-5" />
-						</button>
-					</div>
 				</CardContent>
 			</Card>
-            <div className="my-5"> 
-             <RankingCards/>
-
-            </div>
+			<div className="my-5">
+				<RankingCards />
+			</div>
 		</div>
 	);
 }

@@ -40,7 +40,7 @@ export function AppSidebarMain() {
 
   return (
     <Sidebar className="w-64 h-screen  overflow-hidden ">
-      <SidebarContent className="flex flex-col h-full bg-[#121111] p-4 space-y-4 overflow-y-hidden">
+      <SidebarContent className="flex flex-col h-full  bg-[#121111] p-4 space-y-4 overflow-hidden">
         
         {/* Logo */}
         <div className="mb-6">

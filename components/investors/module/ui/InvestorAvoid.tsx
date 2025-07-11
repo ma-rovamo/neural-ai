@@ -81,7 +81,7 @@ function MiniSparkline({ isPositive }: { isPositive: boolean }) {
   );
 }
 
-export default function YourStocks() {
+export default function InvestorAvoid() {
   return (
     <div className="bg-[#232323]  rounded-2xl  p-6">
       <Card className="bg-[#171717] border-gray-800 shadow-2xl  mx-auto">
@@ -89,7 +89,7 @@ export default function YourStocks() {
           <div className="p-6">
             <div className="flex items-center justify-between mb-6">
               <h2 className="text-xl font-semibold text-white">
-                Your Stocks with Lowst Pressure
+               This Investor Might Avoid
               </h2>
               <button className="text-gray-400 hover:text-gray-300">
                 <MoreHorizontal size={20} />

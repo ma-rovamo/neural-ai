@@ -19,6 +19,7 @@ import { Input } from './ui/input';
 import { Button } from './ui/button';
 import { AppSidebarMain } from './AppSidebarr';
 import { Avatar, AvatarFallback, AvatarImage } from './ui/avatar';
+import { AIAnalyticsButton } from './BottomNavigation';
 
 const Sidebar = ({ children }: { children: React.ReactNode }) => {
   const pathname = usePathname();
@@ -51,7 +52,7 @@ const Sidebar = ({ children }: { children: React.ReactNode }) => {
 
         <main className="flex-1 flex flex-col">
           {/* Header */}
-          <header className="border-b border-[#2a2a2a] p-3 sm:p-4 md:p-5 bg-[#121212]">
+          <header className=" p-3 sm:p-4 md:p-5 bg-[#121212]">
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-2 sm:gap-4">
                 {/* Mobile menu button */}
@@ -93,7 +94,10 @@ const Sidebar = ({ children }: { children: React.ReactNode }) => {
             </div>
           </header>
 
-          <div className="bg-[#121212] text-white">{children}</div>
+          <div className="bg-[#171717] text-white">
+            {children}
+<AIAnalyticsButton/>
+          </div>
         </main>
       </div>
     </SidebarProvider>
