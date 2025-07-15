@@ -135,76 +135,77 @@ function VerticalBarChart() {
   };
 
   return (
-    <div className="bg-[#171717] rounded-lg p-6 flex-1 border border-gray-800">
-      <div className="flex items-center justify-between mb-6">
-        <h2 className="text-xl font-semibold text-white">Historical Days to Trade</h2>
-        <div className="flex items-center gap-2">
-          <span className="text-sm text-gray-400">Show:</span>
-          <div className="flex items-center gap-1 bg-[#2a2a2a] rounded-lg px-3 py-1 cursor-pointer hover:bg-[#333333] transition-colors">
-            <span className="text-sm text-white">In This Year</span>
-            <ChevronDown size={16} className="text-gray-400" />
-          </div>
-        </div>
-      </div>
-      
-      <div className="h-[350px] w-full">
-        <ResponsiveContainer width="100%" height="100%">
-          <ShadcnBarChart
-            data={chartData}
-            margin={{ top: 20, right: 30, left: 20, bottom: 20 }}
-            barGap={2}
-          >
-            <CartesianGrid strokeDasharray="3 3" stroke="#333" vertical={false} />
-            <XAxis 
-              dataKey="month" 
-              axisLine={{ stroke: '#444' }}
-              tickLine={false}
-              tick={{ fill: '#999', fontSize: 12 }}
-            />
-            <YAxis 
-              axisLine={{ stroke: '#444' }}
-              tickLine={false}
-              tick={{ fill: '#999', fontSize: 12 }}
-            />
-            <Tooltip 
-              content={<CustomTooltip />} 
-              cursor={{ fill: 'rgba(50, 50, 50, 0.2)' }} // Subtle highlight without hover effect
-            />
-            <Legend 
-              wrapperStyle={{ paddingTop: 15 }}
-              iconType="circle"
-              formatter={(value) => <span className="text-gray-300">{value}</span>}
-            />
-            <Bar 
-              dataKey="usa" 
-              name="USA" 
-              fill="#10b981" 
-              radius={[4, 4, 0, 0]} 
-              animationDuration={1500}
-              animationEasing="ease-out"
-            />
-            <Bar 
-              dataKey="china" 
-              name="China" 
-              fill="#a855f7" 
-              radius={[4, 4, 0, 0]} 
-              animationDuration={1500}
-              animationEasing="ease-out"
-              animationBegin={300}
-            />
-            <Bar 
-              dataKey="germany" 
-              name="Germany" 
-              fill="#3b82f6" 
-              radius={[4, 4, 0, 0]} 
-              animationDuration={1500}
-              animationEasing="ease-out"
-              animationBegin={600}
-            />
-          </ShadcnBarChart>
-        </ResponsiveContainer>
+   <div className="bg-[#171717] rounded-lg p-3 sm:p-6 flex-1 border border-gray-800">
+  <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-4 sm:mb-6 gap-3">
+    <h2 className="text-lg sm:text-xl font-semibold text-white">Historical Days to Trade</h2>
+    <div className="flex items-center gap-2">
+      <span className="text-xs sm:text-sm text-gray-400">Show:</span>
+      <div className="flex items-center gap-1 bg-[#2a2a2a] rounded-lg px-2 sm:px-3 py-1 cursor-pointer hover:bg-[#333333] transition-colors">
+        <span className="text-xs sm:text-sm text-white">In This Year</span>
+        <ChevronDown size={16} className="text-gray-400" />
       </div>
     </div>
+  </div>
+       
+  <div className="h-60 sm:h-[350px] w-full">
+    <ResponsiveContainer width="100%" height="100%">
+      <ShadcnBarChart
+        data={chartData}
+        margin={{ top: 10, right: 10, left: 5, bottom: 10 }}
+        barGap={2}
+      >
+        <CartesianGrid strokeDasharray="3 3" stroke="#333" vertical={false} />
+        <XAxis
+          dataKey="month"
+          axisLine={{ stroke: '#444' }}
+          tickLine={false}
+          tick={{ fill: '#999', fontSize: 10 }}
+        />
+        <YAxis
+          axisLine={{ stroke: '#444' }}
+          tickLine={false}
+          tick={{ fill: '#999', fontSize: 10 }}
+        />
+        <Tooltip
+          content={<CustomTooltip />}
+          cursor={{ fill: 'rgba(50, 50, 50, 0.2)' }}
+        />
+        <Legend
+          wrapperStyle={{ paddingTop: 15 }}
+          iconType="circle"
+          formatter={(value) => <span className="text-gray-300">{value}</span>}
+        />
+        <Bar
+          dataKey="usa"
+          name="USA"
+          fill="#10b981"
+          radius={[4, 4, 0, 0]}
+          animationDuration={1500}
+          animationEasing="ease-out"
+        />
+        <Bar
+          dataKey="china"
+          name="China"
+          fill="#a855f7"
+          radius={[4, 4, 0, 0]}
+          animationDuration={1500}
+          animationEasing="ease-out"
+          animationBegin={300}
+        />
+        <Bar
+          dataKey="germany"
+          name="Germany"
+          fill="#3b82f6"
+          radius={[4, 4, 0, 0]}
+          animationDuration={1500}
+          animationEasing="ease-out"
+          animationBegin={600}
+        />
+      </ShadcnBarChart>
+    </ResponsiveContainer>
+  </div>
+</div>
+
   );
 }
 
