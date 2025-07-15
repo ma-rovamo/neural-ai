@@ -6,11 +6,8 @@ import {
   Lightbulb, 
   Users, 
   MapPin, 
-  Eye, 
-  Activity, 
   Search,
   Bell,
-  User,
   Menu
 } from 'lucide-react';
 import { usePathname } from 'next/navigation';
@@ -32,12 +29,12 @@ const Sidebar = ({ children }: { children: React.ReactNode }) => {
     { path: '/positioning', icon: MapPin, label: 'Positioning' },
   ];
 
-  const marketItems = [
-    { path: '/news', icon: Eye, label: 'News Overview' },
-    { path: '/market', icon: Activity, label: 'Market Tracker' },
-  ];
+  // const marketItems = [
+  //   { path: '/news', icon: Eye, label: 'News Overview' },
+  //   { path: '/market', icon: Activity, label: 'Market Tracker' },
+  // ];
 
-  const allRoutes = [...mainMenuItems, ...marketItems];
+  const allRoutes = [...mainMenuItems];
 
   // Match label from pathname
   const currentLabel = allRoutes.find(item => pathname?.startsWith(item.path))?.label || 'Dashboard';
@@ -87,7 +84,7 @@ const Sidebar = ({ children }: { children: React.ReactNode }) => {
 
                 {/* Avatar */}
                 <Avatar className="h-8 w-8 sm:h-9 sm:w-9 md:h-10 md:w-10 border border-gray-700 cursor-pointer hover:border-gray-500 transition-colors">
-                  <AvatarImage src="https://github.com/shadcn.png" alt="User" />
+                  <AvatarImage src="/avatar.png" alt="User" />
                   <AvatarFallback className="bg-[#1e1e1e] text-gray-300 font-medium text-xs sm:text-sm">JD</AvatarFallback>
                 </Avatar>
               </div>

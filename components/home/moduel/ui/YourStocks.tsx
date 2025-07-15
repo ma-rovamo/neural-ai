@@ -83,43 +83,87 @@ function MiniSparkline({ isPositive }: { isPositive: boolean }) {
 
 export default function YourStocks() {
   return (
-    <div className="bg-[#232323]  rounded-2xl  p-6">
-      <Card className="bg-[#171717] border-gray-800 shadow-2xl  mx-auto">
-        <CardContent className="p-0">
-          <div className="p-6">
-            <div className="flex items-center justify-between mb-6">
-              <h2 className="text-xl font-semibold text-white">
-                Your Stocks with Lowst Pressure
-              </h2>
-              <button className="text-gray-400 hover:text-gray-300">
-                <MoreHorizontal size={20} />
-              </button>
-            </div>
-            
-            <div className="rounded-lg bg-[#0f0f0f] overflow-hidden">
-              {/* Header */}
-              <div className="grid grid-cols-5 gap-4 px-6 py-4 border-b border-gray-800">
-                <div className="text-sm font-medium text-gray-400 uppercase tracking-wider">NAME</div>
-                <div className="text-sm font-medium text-gray-400 uppercase tracking-wider">TICKER</div>
-                <div className="text-sm font-medium text-gray-400 uppercase tracking-wider">PRESSURE</div>
-                <div className="text-sm font-medium text-gray-400 uppercase tracking-wider">DAYS TO TRADE</div>
-                <div className="text-sm font-medium text-gray-400 uppercase tracking-wider">RATINGS</div>
+   <div className="bg-[#232323] rounded-2xl p-3 sm:p-6">
+  <Card className="bg-[#171717] border-gray-800 shadow-2xl mx-auto">
+    <CardContent className="p-0">
+      <div className="p-3 sm:p-6">
+        <div className="flex items-center justify-between mb-4 sm:mb-6">
+          <h2 className="text-lg sm:text-xl font-semibold text-white">
+            Your Stocks with Lowest Pressure
+          </h2>
+          <button className="text-gray-400 hover:text-gray-300">
+            <MoreHorizontal size={20} />
+          </button>
+        </div>
+        
+        <div className="rounded-lg bg-[#0f0f0f] overflow-hidden">
+          {/* Desktop Header */}
+          <div className="hidden md:grid grid-cols-5 gap-4 px-6 py-4 border-b border-gray-800">
+            <div className="text-sm font-medium text-gray-400 uppercase tracking-wider">NAME</div>
+            <div className="text-sm font-medium text-gray-400 uppercase tracking-wider">TICKER</div>
+            <div className="text-sm font-medium text-gray-400 uppercase tracking-wider">PRESSURE</div>
+            <div className="text-sm font-medium text-gray-400 uppercase tracking-wider">DAYS TO TRADE</div>
+            <div className="text-sm font-medium text-gray-400 uppercase tracking-wider">RATINGS</div>
+          </div>
+          
+          {/* Stock Rows */}
+          {stocks.map((stock, idx) => (
+            <div
+              key={stock.ticker}
+              className="border-b border-gray-800 last:border-none hover:bg-[#1a1a1a]/50 transition-colors"
+            >
+              {/* Desktop Layout */}
+              <div className="hidden md:grid grid-cols-5 gap-4 items-center px-6 py-5">
+                <div className="text-white font-medium text-base">{stock.name}</div>
+                <div className="text-white font-semibold text-base">{stock.ticker}</div>
+                <div className="flex items-center gap-3">
+                  <span
+                    className={cn(
+                      "font-semibold text-base",
+                      stock.isPositive ? "text-green-400" : "text-red-400"
+                    )}
+                  >
+                    {stock.isPositive ? "+" : "-"} ${Math.abs(stock.pressure).toFixed(2)}
+                  </span>
+                  <MiniSparkline isPositive={stock.isPositive} />
+                </div>
+                <div className="text-white font-medium text-base">{stock.daysToTrade}</div>
+                <div>
+                  <div
+                    className={cn(
+                      "inline-flex px-3 py-1.5 rounded-lg",
+                      stock.ratingBg
+                    )}
+                  >
+                    <RatingStars count={stock.rating} color={stock.ratingColor} />
+                  </div>
+                </div>
               </div>
-              
-              {/* Stock Rows */}
-              {stocks.map((stock, idx) => (
-                <div
-                  key={stock.ticker}
-                  className={cn(
-                    "grid grid-cols-5 gap-4 items-center px-6 py-5 border-b border-gray-800 last:border-none hover:bg-[#1a1a1a]/50 transition-colors",
-                  )}
-                >
-                  <div className="text-white font-medium text-base">{stock.name}</div>
-                  <div className="text-white font-semibold text-base">{stock.ticker}</div>
-                  <div className="flex items-center gap-3">
+
+              {/* Mobile Layout */}
+              <div className="md:hidden p-4 space-y-3">
+                {/* Top Row: Name, Ticker, Rating */}
+                <div className="flex items-center justify-between">
+                  <div className="flex items-center gap-2">
+                    <span className="text-white font-medium text-sm">{stock.name}</span>
+                    <span className="text-gray-400 text-xs">({stock.ticker})</span>
+                  </div>
+                  <div
+                    className={cn(
+                      "inline-flex px-2 py-1 rounded-md",
+                      stock.ratingBg
+                    )}
+                  >
+                    <RatingStars count={stock.rating} color={stock.ratingColor} />
+                  </div>
+                </div>
+                
+                {/* Bottom Row: Pressure and Days */}
+                <div className="flex items-center justify-between">
+                  <div className="flex items-center gap-2">
                     <span
                       className={cn(
-                        "font-semibold text-base",
+                        "font-semibold text-sm",
                         stock.isPositive ? "text-green-400" : "text-red-400"
                       )}
                     >
@@ -127,30 +171,25 @@ export default function YourStocks() {
                     </span>
                     <MiniSparkline isPositive={stock.isPositive} />
                   </div>
-                  <div className="text-white font-medium text-base">{stock.daysToTrade}</div>
-                  <div>
-                    <div
-                      className={cn(
-                        "inline-flex px-3 py-1.5 rounded-lg",
-                        stock.ratingBg
-                      )}
-                    >
-                      <RatingStars count={stock.rating} color={stock.ratingColor} />
-                    </div>
+                  <div className="text-gray-400 text-xs">
+                    {stock.daysToTrade} days to trade
                   </div>
                 </div>
-              ))}
-              
-              {/* View All Button */}
-              <div className="p-4">
-                <button className="w-full py-3 bg-[#1a1a1a] rounded-lg text-gray-400 hover:bg-[#2a2a2a] transition-colors text-sm font-medium">
-                  View All
-                </button>
               </div>
             </div>
+          ))}
+          
+          {/* View All Button */}
+          <div className="p-3 sm:p-4">
+            <button className="w-full py-3 bg-[#1a1a1a] rounded-lg text-gray-400 hover:bg-[#2a2a2a] transition-colors text-sm font-medium">
+              View All
+            </button>
           </div>
-        </CardContent>
-      </Card>
-    </div>
+        </div>
+      </div>
+    </CardContent>
+  </Card>
+</div>
+
   );
 }

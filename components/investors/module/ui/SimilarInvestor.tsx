@@ -72,7 +72,7 @@ const SimilarInvestor = () => {
     };
 
     const targetProgress = getProgress();
-    const radius = 30;
+    const radius = 40; // Increased from 36
     const circumference = 2 * Math.PI * radius;
 
     // Animate progress on mount
@@ -86,12 +86,12 @@ const SimilarInvestor = () => {
     const strokeDashoffset = circumference - (animatedProgress / 100) * circumference;
 
     return (
-      <div className="relative w-16 h-16 flex items-center justify-center group">
-        <svg className="w-16 h-16 transform -rotate-90" viewBox="0 0 70 70">
+      <div className="relative w-24 h-24 flex items-center justify-center group"> {/* Increased from w-20 h-20 */}
+        <svg className="w-24 h-24 transform -rotate-90" viewBox="0 0 92 92"> {/* Increased from w-20 h-20 and viewBox from 84 84 */}
           {/* Background circle */}
           <circle
-            cx="35"
-            cy="35"
+            cx="46" // Adjusted center
+            cy="46" // Adjusted center
             r={radius}
             stroke="#333"
             strokeWidth="4"
@@ -100,8 +100,8 @@ const SimilarInvestor = () => {
           />
           {/* Animated progress circle */}
           <circle
-            cx="35"
-            cy="35"
+            cx="46" // Adjusted center
+            cy="46" // Adjusted center
             r={radius}
             stroke={getStrokeColor()}
             strokeWidth="4"
@@ -115,10 +115,10 @@ const SimilarInvestor = () => {
             }}
           />
         </svg>
-        
+               
         {/* Center text */}
         <div className="absolute inset-0 flex items-center justify-center">
-          <span className="text-xs font-semibold text-white group-hover:scale-110 transition-transform duration-200">
+          <span className="text-sm font-semibold text-white group-hover:scale-110 transition-transform duration-200">
             {status}
           </span>
         </div>
@@ -127,15 +127,15 @@ const SimilarInvestor = () => {
   };
 
   return (
-    <div className="space-y-4 bg-[#232323] rounded-2xl p-4 mb-4">
+    <div className="space-y-4 bg-[#232323] rounded-2xl p-3 sm:p-4 mb-4">
       {/* Header */}
       <div className="flex items-center justify-between">
-        <h2 className="text-lg font-medium text-white">Similar Investors</h2>
+        <h2 className="text-base sm:text-lg font-medium text-white">Similar Investors</h2>
         <div className="flex items-center gap-2">
-          <span className="text-sm text-gray-400">Show:</span>
+          <span className="text-xs sm:text-sm text-gray-400">Show:</span>
           <div className="relative">
             <select
-              className="bg-transparent border-none text-white text-sm appearance-none pr-6 cursor-pointer focus:outline-none"
+              className="bg-transparent border-none text-white text-xs sm:text-sm appearance-none pr-6 cursor-pointer focus:outline-none"
               value={selectedTimeframe}
               onChange={(e) => setSelectedTimeframe(e.target.value)}
             >
@@ -149,26 +149,26 @@ const SimilarInvestor = () => {
       </div>
 
       {/* Cards Grid */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-        {fundCards.map((fund:FundCard) => (
-          <Card key={fund.id} className="bg-[#171717]  rounded-lg hover:bg-[#333] transition-all duration-300 hover:scale-105">
-            <CardContent className="p-4">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
+        {fundCards.map((fund: FundCard) => (
+          <Card key={fund.id} className="bg-[#171717] rounded-lg">
+            <CardContent className="p-3 sm:p-4">
               <div className="text-center space-y-3">
                 {/* Fund Info */}
                 <div>
-                  <h3 className="font-medium text-white text-sm">{fund.name}</h3>
+                  <h3 className="font-medium text-white text-xs sm:text-sm">{fund.name}</h3>
                   <p className="text-xs text-gray-400 mt-1">{fund.subName}</p>
                 </div>
-
+                
                 {/* Progress Circle */}
                 <div className="flex justify-center">
                   <CircularProgress status={fund.status} color={fund.color} />
                 </div>
-
+                
                 {/* Holdings */}
                 <div>
                   <p className="text-xs text-gray-400">No. of Holdings</p>
-                  <p className="text-lg font-bold text-white mt-1">{fund.holdings}</p>
+                  <p className="text-base sm:text-lg font-bold text-white mt-1">{fund.holdings}</p>
                 </div>
               </div>
             </CardContent>

@@ -30,10 +30,10 @@ const navigationItems = [
   { title: "Positioning", icon: Home, href: "/positioning" }
 ];
 
-const marketItems = [
-  { title: "Flows Overview", icon: BarChart3, href: "/flows-overview" },
-  { title: "Market Tracker", icon: TrendingUp, href: "/market-tracker" }
-];
+// const marketItems = [
+//   { title: "Flows Overview", icon: BarChart3, href: "/flows-overview" },
+//   { title: "Market Tracker", icon: TrendingUp, href: "/market-tracker" }
+// ];
 
 export function AppSidebarMain() {
   const pathname = usePathname();
@@ -81,12 +81,12 @@ export function AppSidebarMain() {
 
         {/* Market Section */}
         <SidebarGroup>
-          <p className="text-xs text-gray-500 px-3 pt-4 pb-2 tracking-wide uppercase">
+          {/* <p className="text-xs text-gray-500 px-3 pt-4 pb-2 tracking-wide uppercase">
             Market
-          </p>
+          </p> */}
           <SidebarGroupContent>
             <SidebarMenu className="space-y-1">
-              {marketItems.map((item) => {
+              {/* {marketItems.map((item) => {
                 const isActive = pathname === item.href;
                 return (
                   <SidebarMenuItem key={item.title}>
@@ -109,7 +109,7 @@ export function AppSidebarMain() {
                     </SidebarMenuButton>
                   </SidebarMenuItem>
                 );
-              })}
+              })} */}
             </SidebarMenu>
           </SidebarGroupContent>
         </SidebarGroup>
@@ -117,7 +117,7 @@ export function AppSidebarMain() {
         <div className="flex-grow" />
 
         {/* Optional Bottom Nav */}
-        <SidebarGroup>
+        {/* <SidebarGroup>
           <SidebarGroupContent>
             <SidebarMenu className="space-y-1">
               {[{ title: "Settings", icon: Settings, href: "/settings" }, { title: "Help Center", icon: HelpCircle, href: "/help" }].map((item) => {
@@ -146,7 +146,7 @@ export function AppSidebarMain() {
               })}
             </SidebarMenu>
           </SidebarGroupContent>
-        </SidebarGroup>
+        </SidebarGroup> */}
       </SidebarContent>
     </Sidebar>
   );
