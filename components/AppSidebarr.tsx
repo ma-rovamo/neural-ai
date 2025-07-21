@@ -30,10 +30,10 @@ const navigationItems = [
   { title: "Positioning", icon: Home, href: "/positioning" }
 ];
 
-// const marketItems = [
-//   { title: "Flows Overview", icon: BarChart3, href: "/flows-overview" },
-//   { title: "Market Tracker", icon: TrendingUp, href: "/market-tracker" }
-// ];
+const marketItems = [
+  { title: "Flows Overview", icon: BarChart3, href: "#" },
+  { title: "Market Tracker", icon: TrendingUp, href: "#" }
+];
 
 export function AppSidebarMain() {
   const pathname = usePathname();
@@ -43,7 +43,7 @@ export function AppSidebarMain() {
       <SidebarContent className="flex flex-col h-full  bg-[#121111] p-4 space-y-4 overflow-hidden">
         
         {/* Logo */}
-        <div className="mb-6">
+        <div className="mb-6 flex items-center justify-start py-3">
           <h1 className="text-xl font-bold text-white">Neural Markets</h1>
         </div>
 
@@ -81,12 +81,12 @@ export function AppSidebarMain() {
 
         {/* Market Section */}
         <SidebarGroup>
-          {/* <p className="text-xs text-gray-500 px-3 pt-4 pb-2 tracking-wide uppercase">
+          <p className="text-xs text-gray-500 px-3 pt-4 pb-2 tracking-wide uppercase">
             Market
-          </p> */}
+          </p>
           <SidebarGroupContent>
             <SidebarMenu className="space-y-1">
-              {/* {marketItems.map((item) => {
+              {marketItems.map((item) => {
                 const isActive = pathname === item.href;
                 return (
                   <SidebarMenuItem key={item.title}>
@@ -109,7 +109,7 @@ export function AppSidebarMain() {
                     </SidebarMenuButton>
                   </SidebarMenuItem>
                 );
-              })} */}
+              })}
             </SidebarMenu>
           </SidebarGroupContent>
         </SidebarGroup>
