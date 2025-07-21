@@ -111,7 +111,7 @@ const Sidebar = ({ children }: { children: React.ReactNode }) => {
 
                 {/* AI Assistant */}
                 <Link href="/ai-chat">
-                <Button className="bg-gradient-to-r from-blue-500 to-pink-500 text-white text-sm font-medium px-4 py-2 rounded-full hover:opacity-90 transition-all">
+                <Button className="bg-gradient-to-r cursor-pointer from-blue-500 to-pink-500 text-white text-sm font-medium px-4 py-2 rounded-full hover:opacity-90 transition-all">
                   ✨ AI Assistant
                 </Button>
                 </Link>
